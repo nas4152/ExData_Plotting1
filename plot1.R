@@ -1,5 +1,5 @@
 url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
-if (!dir.exists("plotdata.zip")) {
+if (!dir.exists("household_power_consumption.txt")) {
         download.file(url, "plotdata.zip", method = "curl")
         unzip("plotdata.zip")
 }
@@ -28,4 +28,9 @@ if(sum(is.na(plotdata)) != 0) {
 if(sum(plotdata[2:9] == "?") != 0) {
         print("Warning: NA's present")
 }
+png(filename = "plot1.png", bg = "transparent")
+hist(plotdata$Global_active_power, main = "Global Active Power", 
+     xlab = "Global Active Power (kilowatts)", col = "red", bg = "transparent")
+dev.off()
+
 
