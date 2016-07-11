@@ -1,5 +1,5 @@
 url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
-if (!dir.exists("household_power_consumption.txt")) {
+if (!file.exists("household_power_consumption.txt")) {
         download.file(url, "plotdata.zip", method = "curl")
         unzip("plotdata.zip")
 }
