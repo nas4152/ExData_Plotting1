@@ -14,3 +14,18 @@ plotdata <- read.csv.sql("household_power_consumption.txt", sql =
         sep = ";")
 
 ## checked 02/02/2007, 2/02/2007 formats and returned no results
+## check that both dates selected:
+##unique(plotdata$Date)
+## returns: "1/2/2007" "2/2/2007"
+plotdata[ ,1] <- as.Date(plotdata[ ,1], format = "%d/%m/%Y")
+
+## double checking that selected data has no missing values, either as
+## found with is.na or as coded with "?"
+if(sum(is.na(plotdata)) != 0) {
+        print("Warning: NA's present")
+}
+
+if(sum(plotdata[2:9] == "?") != 0) {
+        print("Warning: NA's present")
+}
+
