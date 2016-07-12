@@ -28,3 +28,23 @@ if(sum(is.na(plotdata)) != 0) {
 if(sum(plotdata[2:9] == "?") != 0) {
         print("Warning: NA's present")
 }
+
+
+png(filename = "plot4.png", bg = "transparent")
+par(mfcol = c(2,2))
+
+plot(plotdata$Time, plotdata$Global_active_power, type = "l", xlab = "Time", 
+     ylab = "Global Active Power (kilowatts)", bg = "transparent")
+
+plot(plotdata$Time, plotdata$Sub_metering_1, type = "n", xlab = "", 
+     ylab = "Energy sub metering", bg = "transparent")
+points(plotdata$Time, plotdata$Sub_metering_1, type = "l")
+points(plotdata$Time, plotdata$Sub_metering_2 , type = "l", col = "red")
+points(plotdata$Time, plotdata$Sub_metering_3 , type = "l", col = "blue")
+
+legend("topright", 
+       legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), 
+       lwd = 1, col = c("black", "red", "blue"), 
+       text.width = strwidth("Sub_metering_3"), cex = 0.75)
+
+dev.off()
