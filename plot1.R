@@ -17,7 +17,12 @@ plotdata <- read.csv.sql("household_power_consumption.txt", sql =
 ## check that both dates selected:
 ##unique(plotdata$Date)
 ## returns: "1/2/2007" "2/2/2007"
-plotdata[ ,1] <- as.Date(plotdata[ ,1], format = "%d/%m/%Y")
+
+plotdata[ ,2] <- paste(plotdata[ ,1], plotdata[ ,2])
+plotdata[ ,2] <- as.POSIXct(plotdata[ ,2], 
+                            format = "%d/%m/%Y %H:%M:%S", tz = "GMT") 
+
+plotdata[ ,1] <- as.POSIXct(plotdata[ ,1], format = "%d/%m/%Y")
 
 ## double checking that selected data has no missing values, either as
 ## found with is.na or as coded with "?"
